@@ -1,6 +1,6 @@
-require 'active_support/core_ext/string'
+require "active_support/inflector"
 # Defines the matching rules for Guard.
-guard :minitest, spring: "rails test", all_on_start: false do
+guard :minitest, all_on_start: false do
   watch(%r{^test/(.*)/?(.*)_test\.rb$})
   watch('test/test_helper.rb') { 'test' }
   watch('config/routes.rb') { interface_tests }
@@ -44,6 +44,10 @@ guard :minitest, spring: "rails test", all_on_start: false do
   watch(%r{app/views/users/*}) do
     resource_tests('users') +
     ['test/integration/microposts_interface_test.rb']
+  end
+  watch('app/controllers/relationships_controller.rb') do
+    ['test/controllers/relationships_controller_test.rb',
+     'test/integration/following_test.rb']
   end
 end
 

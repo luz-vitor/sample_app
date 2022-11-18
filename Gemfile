@@ -84,6 +84,5 @@ group :test do
   gem 'minitest-reporters', '~> 1.5'
   gem 'guard', '~> 2.18'
   gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
-  # problemas com Guard
-  gem 'rake', '~> 13.0', '>= 13.0.6'
+  
 end
