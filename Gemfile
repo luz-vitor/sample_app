@@ -46,6 +46,11 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 gem 'gitignore', '~> 0.1.0'
 
+#Windows Directory Monitor (WDM)
+gem 'wdm', '~> 0.1.1'
+ 
+# Color on windows
+gem 'win32console', '~> 1.3', '>= 1.3.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -61,12 +66,8 @@ group :development do
   
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", "~> 1.4"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem 'listen', '~> 3.7', '>= 3.7.1'
+  
 end
 
 group :production do
@@ -81,5 +82,8 @@ group :test do
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.5'
   gem 'minitest', '~> 5.16', '>= 5.16.3'
   gem 'minitest-reporters', '~> 1.5'
-
+  gem 'guard', '~> 2.18'
+  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
+  # problemas com Guard
+  gem 'rake', '~> 13.0', '>= 13.0.6'
 end
