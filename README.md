@@ -190,4 +190,47 @@ It's a palindrome!
 4.3.3
 
 1.
+>> frase = {}
+=> {}
+>> frase = { :one => "uno", :two => "dos", :three => "tres"}
+=> {:one=>"uno", :two=>"dos", :three=>"tres"}
+?> frase.each do |key, value|
+?>   puts "'#{key}' in Spanish is '#{value}'"
+>> end
+'one' in Spanish is 'uno'
+'two' in Spanish is 'dos'
+'three' in Spanish is 'tres'
+=> {:one=>"uno", :two=>"dos", :three=>"tres"}
+2.
+=> {:one=>"uno", :two=>"dos", :three=>"tres"}
+>> person1 = { :first => "Jose" , :last => "Silva" }
+=> {:first=>"Jose", :last=>"Silva"}
+>> person2 = { :first => "Maria" , :last => "Santos" }
+=> {:first=>"Maria", :last=>"Santos"}
+>> person3 = { :first => "Alice" , :last => "Carroll" }
+=> {:first=>"Alice", :last=>"Carroll"}
+>> params = { :father => person1, :mother => person2, :child => person3}
+=>
+{:father=>{:first=>"Jose", :last=>"Silva"},
+...
+>> params[:father][:first]
+=> "Jose"
+>> params[:mother][:first]
+=> "Maria"
+>> params[:child][:last]
+=> "Carroll"
+3.
+>> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", :password => ('a'..'z').to_a.sample(16).join}
+=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", :password=>"ocfuxyngmdkajzeh"}
+>> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", :password => ('a'..'z').to_a.sample(16).join}
+=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", :password=>"ofcpwjlqugxzaemv"}
+4.
+>> { "a" => 100, "b" => 200 }.merge({ "b" => 300 })
+=> {"a"=>100, "b"=>300}
+".merge return a 'new hash'. If the value for entries are duplicated, the 'new' keys value will be the value of the 'other_hash' keys".
 ```
+
+```js
+4.4.1
+
+1.
