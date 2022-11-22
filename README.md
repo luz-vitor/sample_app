@@ -220,19 +220,14 @@ It's a palindrome!
 >> params[:child][:last]
 => "Carroll"
 3.
->> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", 
-								:password => ('a'..'z').to_a.sample(16).join}
-=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", 
-								:password=>"ocfuxyngmdkajzeh"}
->> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", 
-								:password => ('a'..'z').to_a.sample(16).join}
-=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", 
-								:password=>"ofcpwjlqugxzaemv"}
+>> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", :password => ('a'..'z').to_a.sample(16).join}
+=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", :password=>"ocfuxyngmdkajzeh"}
+>> hash = { :name => "Vitor Luz", :email => "luz_vitor@hotmail.com", :password => ('a'..'z').to_a.sample(16).join}
+=> {:name=>"Vitor Luz", :email=>"luz_vitor@hotmail.com", :password=>"ofcpwjlqugxzaemv"}
 4.
 >> { "a" => 100, "b" => 200 }.merge({ "b" => 300 })
 => {"a"=>100, "b"=>300}
-".merge return a 'new hash'. If the value for entries are duplicated, 
-the 'new' keys value will be the value of the 'other_hash' keys".
+".merge return a 'new hash'. If the value for entries are duplicated, the 'new' keys value will be the value of the 'other_hash' keys".
 ```
 
 ```js
