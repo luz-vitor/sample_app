@@ -50,7 +50,7 @@ gem 'gitignore', '~> 0.1.0'
 gem 'wdm', '~> 0.1.1'
  
 # Color on windows
-gem 'win32console', '~> 1.3', '>= 1.3.2'
+#gem 'win32console', '~> 1.3', '>= 1.3.2'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
