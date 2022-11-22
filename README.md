@@ -32,3 +32,21 @@ $ rails server
 ```
 For more information, see the
 [*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
+----------------------------------------------------------------------------
+Exercises Chapter 4
+4.2.1
+```js
+1. >> city = "Rio Claro"
+=> "Rio Claro"
+>> state = "Sao Paulo"
+=> "Sao Paulo"
+2. >> puts "#{city}, #{state}"
+Rio Claro, Sao Paulo
+=> nil
+3. >> puts "#{city},\t#{state}"
+Rio Claro,      Sao Paulo
+=> nil
+4. >> puts '#{city},\t#{state}'
+#{city},\t#{state}
+=> nil
+```
