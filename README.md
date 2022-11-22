@@ -233,4 +233,128 @@ It's a palindrome!
 ```js
 4.4.1
 
+1. 
+>> (1..10)
+=> 1..10
+2.
+>> Range.new(1,10)
+=> 1..10
+3.
+>> (1..10) == Range.new(1,10)
+=> true
+```
+
+```js
+4.4.2
+
 1.
+>> Range.class
+=> Class
+>> Range.class.superclass
+=> Module
+>> Range.class.superclass.superclass
+=> Object
+>> Range.class.superclass.superclass.superclass
+=> BasicObject
+2.
+?> class Word < String
+?>   def palindrome?
+?>     self == reverse
+?>   end
+>> end
+=> :palindrome?
+>> s = Word.new("level")
+=> "level"
+>> s.palindrome?
+=> true
+```
+
+```js
+4.4.3
+
+1.
+>> s = Word.new("racecar")
+=> "racecar"
+>> s.palindrome?
+=> true
+>> s = Word.new("onomatopoeia")
+=> "onomatopoeia"
+>> s.palindrome?
+=> false
+>> s = Word.new("Malayalam")
+=> "Malayalam"
+>> s.downcase!
+=> "malayalam"
+>> s.palindrome?
+=> true
+2.
+?> class String
+?>   def shuffle
+?>     self.split('').shuffle.join
+?>   end
+>> end
+=> :shuffle
+>> "foobar".shuffle
+=> "foarob"
+3.
+?> class String
+?>   def shuffle
+?>     split('').shuffle.join
+?>   end
+>> end
+=> :shuffle
+>> "foobar".shuffle
+=> "oroafb"
+```
+
+```js
+4.4.4
+
+1.
+>> user = User.new
+=> #<User:0x0000024530f28998 id: nil, name: nil, email: nil, created_at: nil, updated_at: nil>
+2.
+>> user.class
+=> User(id: integer, name: string, email: string, created_at: datetime, updated_at: datetime)
+>> user.class.superclass
+=> ApplicationRecord(abstract)
+>> user.class.superclass.superclass
+=> ActiveRecord::Base
+>> user.class.superclass.superclass.superclass
+=> Object
+>> user.class.superclass.superclass.superclass.superclass
+=> BasicObject
+```
+
+```js
+4.4.5
+
+1, 2 and 3.
+class User
+	attr_accessor :first_name, :last_name
+
+	def initialize(attributes = {})
+		@first_name = attributes[:first_name]
+		@last_name = attributes[:last_name]
+	end
+
+	def full_name
+		"#{@first_name} #{@last_name}"
+	end
+
+	def alphabetical_name
+		"#{@last_name}, #{first_name}"
+	end
+end
+
+>> require './example_user'
+=> true
+>> user = User.new(:first_name => "Vitor", :last_name => "Luz")
+=> #<User:0x00000282070ce2f8 @first_name="Vitor", @last_name="Luz">
+>> user.full_name
+=> "Vitor Luz"
+>> user.alphabetical_name
+=> "Luz, Vitor"
+>> user.full_name.split == user.alphabetical_name.split(', ').reverse
+=> true
+```
