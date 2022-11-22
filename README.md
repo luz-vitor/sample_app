@@ -38,7 +38,8 @@ Exercises Chapter 4
 ```js
 4.2.1
 
-1. >> city = "Rio Claro"
+1. 
+>> city = "Rio Claro"
 => "Rio Claro"
 >> state = "Sao Paulo"
 => "Sao Paulo"
@@ -51,4 +52,142 @@ Rio Claro,      Sao Paulo
 4. >> puts '#{city},\t#{state}'
 #{city},\t#{state}
 => nil
+```
+
+```js
+4.2.2
+
+1. 
+>> "racecar".length
+=> 7
+2. 
+>> "racecar".reverse
+=> "racecar"
+3.
+>> s = "racecar"
+=> "racecar"
+>> s == s.reverse
+=> true
+4. 
+>> puts "It's a palindrome!" if s == s.reverse
+It's a palindrome!
+=> nil
+>> s = "onomatopoeia"
+=> "onomatopoeia"
+>> s == s.reverse
+=> false
+```
+
+```js
+4.2.3
+
+1. 
+?> def palindrome_tester(s)
+?>   if s == s.reverse
+?>     puts "It's a palindrome!"
+?>   else puts "It's not a palindrome."
+?>   end
+>> end
+=> :palindrome_tester
+2. 
+>> palindrome_tester("racecar")
+It's a palindrome!
+=> nil
+>> palindrome_tester("onomatopoeia")
+It's not a palindrome.
+=> nil
+3.
+>> palindrome_tester("racecar").nil?
+It's a palindrome!
+=> true
+```
+
+```js
+4.3.1
+
+1. 
+>> a = "A man, a plan, a canal, Panama".split(',')
+=> ["A man", " a plan", " a canal", " Panama"]
+2. 
+>> s = a.join()
+=> "A man a plan a canal Panama"
+3. 
+>> s = a.join("")
+=> "A man a plan a canal Panama"
+>> palindrome_tester(s)
+It's not a palindrome.
+>> s = s.split
+=> ["a", "man", "a", "plan", "a", "canal", "panama"]
+>> s = s.split.join(' ')
+=> "a man a plan a canal panama"
+>> s = s.split.join()
+=> "amanaplanacanalpanama"
+>> palindrome_tester(s)
+It's a palindrome!
+=> nil
+4. 
+>> vetor = ('a'..'z').to_a
+=>
+["a",
+...
+>> vetor[7]
+=> "h"
+>> vetor.reverse![7]
+=> "s"
+```
+
+```js
+4.3.2
+
+1. 
+>> (0..16).each {|elemento| puts elemento ** 2}
+0
+1
+4
+9
+16
+25
+36
+49
+64
+81
+100
+121
+144
+169
+196
+225
+256
+=> 0..16
+2. 
+?> def yeller(vet_char)
+?>   vet_char.map(&:upcase).join
+>> end
+=> :yeller
+>> yeller(['o','l','d'])
+=> "OLD"
+3.
+?> def random_subdomain
+?>   ('a'..'z').to_a.sample(8).join
+>> end
+=> :random_subdomain
+>> random_subdomain
+=> "opinyque"
+>> random_subdomain
+=> "joubhevm"
+4.
+?> def string_shuffle(s)
+?>   s.split('').shuffle.join
+>> end
+=> :string_shuffle
+>> string_shuffle("foobar")
+=> "brofao"
+>> string_shuffle("foobar")
+=> "oarbof"
+```
+
+```js
+4.3.3
+
+1.
 ```
