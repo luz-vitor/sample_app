@@ -34,8 +34,10 @@ For more information, see the
 [*Ruby on Rails Tutorial* book](https://www.railstutorial.org/book).
 ----------------------------------------------------------------------------
 Exercises Chapter 4
-4.2.1
+
 ```js
+4.2.1
+
 1. >> city = "Rio Claro"
 => "Rio Claro"
 >> state = "Sao Paulo"
