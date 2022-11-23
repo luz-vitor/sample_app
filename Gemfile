@@ -47,7 +47,7 @@ gem "bootsnap", require: false
 gem 'gitignore', '~> 0.1.0'
 
 #Windows Directory Monitor (WDM)
-gem 'wdm', '~> 0.1.1'
+gem 'wdm', '~> 0.1.1', platforms: [:x64_mingw]
  
 # Color on windows
 #gem 'win32console', '~> 1.3', '>= 1.3.2'
