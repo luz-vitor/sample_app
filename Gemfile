@@ -50,7 +50,7 @@ gem 'gitignore', '~> 0.1.0'
 gem 'wdm', '~> 0.1.1'
  
 # Color on windows
-gem 'win32console', '~> 1.3', '>= 1.3.2'
+#gem 'win32console', '~> 1.3', '>= 1.3.2'
 
 # webpack to manage app-like JavaScript modules in Rails
 gem 'webpacker', '~> 5.4', '>= 5.4.3'
