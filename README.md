@@ -358,3 +358,207 @@ end
 >> user.full_name.split == user.alphabetical_name.split(', ').reverse
 => true
 ```
+
+Exercises Chapter 6
+
+``` js
+6.1.2
+
+1.
+>> user.class
+=> User(id: integer, name: string, email: string, created_at: datetime, updated_at: datetime)
+>> user.class.superclass
+=> ApplicationRecord(abstract)
+>> user.class.superclass.superclass
+=> ActiveRecord::Base
+```
+
+```js
+6.1.3
+
+1.
+>> user.name.class
+=> String
+>> user.email.class
+=> String
+2.
+>> user.created_at.class
+=> ActiveSupport::TimeWithZone
+>> user.updated_at.class
+=> ActiveSupport::TimeWithZone
+```
+
+```js
+6.1.4
+
+1.
+>> User.find_by(name: "A Nother")
+  User Load (0.5ms)  SELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "A Nother"], ["LIMIT", 1]]
+=>
+#<User:0x00000162c538b408
+ id: 2,
+ name: "A Nother",
+ email: "another@example.org",
+ created_at: Thu, 24 Nov 2022 22:38:44.272569000 UTC +00:00,
+ updated_at: Thu, 24 Nov 2022 22:38:44.272569000 UTC +00:00>
+
+>> User.find_by_name ("Michael Hartl")
+  User Load (0.3ms)  SELECT "users".* FROM "users" WHERE "users"."name" = ? LIMIT ?  [["name", "Michael Hartl"], ["LIMIT", 1]]
+=>
+#<User:0x00000162c34137d8
+ id: 1,
+ name: "Michael Hartl",
+ email: "michael@example.com",
+ created_at: Thu, 24 Nov 2022 22:32:17.850535000 UTC +00:00,
+ updated_at: Thu, 24 Nov 2022 22:32:17.850535000 UTC +00:00>
+2.
+>> User.all.class
+=> User::ActiveRecord_Relation
+3.
+>> User.all.length
+  User Load (0.1ms)  SELECT "users".* FROM "users"
+=> 2
+```
+
+```js
+6.1.5
+
+1.
+>> user.name =  "Michael"
+=> "Michael"
+>> user.save
+  TRANSACTION (0.1ms)  SAVEPOINT active_record_1
+  User Update (0.2ms)  UPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["name", "Michael"], ["updated_at", "2022-11-24 23:22:15.539769"], ["id", 1]]
+  TRANSACTION (0.0ms)  RELEASE SAVEPOINT active_record_1
+=> true
+2.
+>> user.update(email:"michael@example.org")
+  TRANSACTION (0.1ms)  SAVEPOINT active_record_1
+  User Update (0.2ms)  UPDATE "users" SET "email" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["email", "michael@example.org"], ["updated_at", "2022-11-24 23:24:10.776789"], ["id", 1]]
+  TRANSACTION (0.0ms)  RELEASE SAVEPOINT active_record_1
+=> true
+3.
+>> user.created_at = 1.year.ago
+=> Wed, 24 Nov 2021 23:26:01.860268900 UTC +00:00
+>> user.save
+  TRANSACTION (0.1ms)  SAVEPOINT active_record_1
+  User Update (0.2ms)  UPDATE "users" SET "created_at" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["created_at", "2021-11-24 23:26:01.860268"], ["updated_at", "2022-11-24 23:26:22.637686"], ["id", 1]]
+  TRANSACTION (0.1ms)  RELEASE SAVEPOINT active_record_1
+=> true
+```
+
+```js
+6.2.1
+
+1.
+>> User.new(name: "Example User", email: "user@example.com").valid?
+=> true
+2.
+>> User.new.valid?
+=> true
+```
+
+```js
+6.2.2
+
+1.
+>> u = User.new
+=> #<User:0x0000029e1ac2d728 id: nil, name: nil, email: nil, created_at: nil, updated_at: nil>
+>> u.valid?
+=> false
+>> u.errors.full_messages
+=> ["Name can't be blank", "Email can't be blank"]
+2.
+>> u.errors.messages
+=> {:name=>["can't be blank"], :email=>["can't be blank"]}
+>> u.errors[:email]
+=> ["can't be blank"]
+```
+
+```js
+6.2.3
+
+1.
+>> user = User.new(name: "a" * 51, email: "a" * 244 + "@example.com")
+  TRANSACTION (0.1ms)  begin transaction
+=>
+#<User:0x0000025a7cfc9a80
+...
+>> user.valid?
+=> false
+2.
+>> user.errors.full_messages
+=> ["Name is too long (maximum is 50 characters)", "Email is too long (maximum is 255 characters)"]
+```
+
+```js
+6.3.2
+
+1.
+>> user = User.new(name: "michael", email:"michael@example.com")
+  TRANSACTION (0.1ms)  begin transaction
+=>
+#<User:0x000002415f0ba458
+...
+>> user.valid?
+  User Exists? (0.2ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?  [["email", "michael@example.com"], ["LIMIT", 1]]
+=> false
+2.
+>> user.errors.full_messages
+=> ["Password can't be blank"]
+```
+
+```js
+6.3.3
+
+1.
+>> user = User.new(name: "michael", email: "michael@example.com", password: "1234", password_confirmation: "1234")
+  TRANSACTION (0.1ms)  begin transaction
+=>
+#<User:0x000001de05283450
+...
+>> user.valid?
+  User Exists? (0.2ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?  [["email", "michael@example.com"], ["LIMIT", 1]]
+=> false
+2.
+>> user.errors.messages
+=> {:password=>["is too short (minimum is 6 characters)"]}
+```
+
+```js
+6.3.4
+
+1.
+>> user = User.find_by(email: "michael@example.com")
+  User Load (0.4ms)  SELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?  [["email", "michael@example.com"], ["LIMIT", 1]]
+=>
+#<User:0x000001a668aaf310
+...
+>> user
+=>
+#<User:0x000001a668aaf310
+ id: 1,
+ name: "Michael Hartl",
+ email: "michael@example.com",
+ created_at: Fri, 25 Nov 2022 21:10:26.731218000 UTC +00:00,
+ updated_at: Fri, 25 Nov 2022 21:10:26.731218000 UTC +00:00,
+ password_digest: "[FILTERED]">
+ 2.
+>> user.name
+=> "Michael Hartl"
+>> user.name = "Other Name"
+=> "Other Name"
+>> user.save
+  TRANSACTION (0.1ms)  begin transaction
+  User Exists? (0.3ms)  SELECT 1 AS one FROM "users" WHERE "users"."email" = ? AND "users"."id" != ? LIMIT ?  [["email", "michael@example.com"], ["id", 1], ["LIMIT", 1]]
+  TRANSACTION (0.0ms)  rollback transaction
+=> false
+>> user.errors.full_messages
+=> ["Password can't be blank", "Password is too short (minimum is 6 characters)"]
+3.
+>> user.update_attribute(:name, "Vitor")
+  TRANSACTION (0.1ms)  begin transaction
+  User Update (1.4ms)  UPDATE "users" SET "name" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["name", "Vitor"], ["updated_at", "2022-11-25 21:25:27.743540"], ["id", 1]]
+  TRANSACTION (114.0ms)  commit transaction
+=> true
+```
